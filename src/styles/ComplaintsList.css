@@ -107,9 +107,9 @@
 
 /* Complaints Grid */
 .complaints-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
   animation: gridFadeIn 0.6s ease;
 }
 
@@ -362,4 +362,322 @@
 
 .complaint-text::-webkit-scrollbar-thumb:hover {
   background: var(--secondary-color);
+}
+/* Complaint List Items */
+.complaint-list-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+  background-color: var(--white);
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: left;
+  border-left: 4px solid var(--primary-color);
+}
+
+.complaint-list-item:hover {
+  box-shadow: var(--shadow-lg);
+  border-color: var(--primary-color);
+  transform: translateX(4px);
+  background-color: #f8fafc;
+}
+
+.complaint-list-number {
+  background-color: var(--primary-color);
+  color: var(--white);
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.complaint-list-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.complaint-list-name {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--text-dark);
+}
+
+.complaint-list-text {
+  color: var(--text-light);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  word-wrap: break-word;
+}
+
+/* Modal Overlay */
+.complaint-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Modal */
+.complaint-modal {
+  background-color: var(--white);
+  border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  max-width: 600px;
+  width: 100%;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Modal Header */
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem;
+  border-bottom: 1px solid var(--border-color);
+  background-color: #f0f9ff;
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: var(--text-dark);
+}
+
+.modal-close-btn {
+  background-color: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--text-light);
+  transition: all 0.3s ease;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+}
+
+.modal-close-btn:hover {
+  background-color: var(--light-bg);
+  color: var(--text-dark);
+}
+
+/* Modal Content */
+.modal-content {
+  padding: 2rem;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.detail-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.detail-label {
+  font-weight: 700;
+  color: var(--primary-color);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.detail-value {
+  color: var(--text-dark);
+  font-size: 1rem;
+  word-break: break-word;
+}
+
+.detail-complaint-text {
+  color: var(--text-dark);
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0.5rem 0 0 0;
+  background-color: var(--light-bg);
+  padding: 1rem;
+  border-radius: 6px;
+  border-left: 4px solid var(--primary-color);
+}
+
+/* Modal Actions */
+.modal-actions {
+  display: flex;
+  gap: 1rem;
+  padding: 2rem;
+  border-top: 1px solid var(--border-color);
+  background-color: #f8fafc;
+}
+
+.btn-delete-modal,
+.btn-close-modal {
+  flex: 1;
+  padding: 0.875rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-delete-modal {
+  background-color: var(--danger-color);
+  color: var(--white);
+}
+
+.btn-delete-modal:hover {
+  background-color: #b91c1c;
+  transform: translateY(-2px);
+}
+
+.btn-close-modal {
+  background-color: var(--border-color);
+  color: var(--text-dark);
+}
+
+.btn-close-modal:hover {
+  background-color: var(--secondary-color);
+  color: var(--white);
+}
+
+/* Responsive Modal */
+@media (max-width: 768px) {
+  .complaint-modal {
+    max-width: 90vw;
+    max-height: 95vh;
+  }
+
+  .complaint-modal-overlay {
+    padding: 0.5rem;
+  }
+
+  .modal-header {
+    padding: 1.5rem;
+  }
+
+  .modal-content {
+    padding: 1.5rem;
+  }
+
+  .modal-actions {
+    padding: 1.5rem;
+    flex-direction: column;
+  }
+
+  .btn-delete-modal,
+  .btn-close-modal {
+    width: 100%;
+  }
+
+  .complaint-list-item {
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .complaint-list-number {
+    width: 40px;
+    height: 40px;
+    font-size: 0.9rem;
+  }
+
+  .complaint-list-name {
+    font-size: 1rem;
+  }
+
+  .complaint-list-text {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .complaint-modal {
+    max-width: 100%;
+    max-height: 100vh;
+    border-radius: 12px 12px 0 0;
+  }
+
+  .complaint-modal-overlay {
+    align-items: flex-end;
+    padding: 0;
+  }
+
+  .modal-header h2 {
+    font-size: 1.25rem;
+  }
+
+  .modal-header {
+    padding: 1.25rem;
+  }
+
+  .modal-content {
+    padding: 1rem;
+  }
+
+  .modal-actions {
+    padding: 1rem;
+  }
+
+  .complaint-list-item {
+    padding: 0.75rem;
+    gap: 0.75rem;
+  }
+
+  .complaint-list-number {
+    width: 38px;
+    height: 38px;
+    font-size: 0.85rem;
+  }
+
+  .complaint-list-name {
+    font-size: 0.95rem;
+  }
+
+  .complaint-list-text {
+    font-size: 0.85rem;
+  }
 }

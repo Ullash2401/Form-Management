@@ -5,6 +5,7 @@ import '../styles/ComplaintsList.css';
 const ComplaintsList = () => {
   const [complaints, setComplaints] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [selectedComplaint, setSelectedComplaint] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -20,11 +21,17 @@ const ComplaintsList = () => {
     }
   }, []);
 
-  const handleDelete = (id) => {
+  const handleDelete = (id, e) => {
+    if (e) {
+      e.stopPropagation();
+    }
     if (window.confirm('Are you sure you want to delete this complaint?')) {
       const updatedComplaints = complaints.filter(complaint => complaint.id !== id);
       localStorage.setItem('complaints', JSON.stringify(updatedComplaints));
       setComplaints(updatedComplaints);
+      if (selectedComplaint?.id === id) {
+        setSelectedComplaint(null);
+      }
     }
   };
 
@@ -32,7 +39,16 @@ const ComplaintsList = () => {
     if (window.confirm('Are you sure you want to delete all complaints? This action cannot be undone.')) {
       localStorage.removeItem('complaints');
       setComplaints([]);
+      setSelectedComplaint(null);
     }
+  };
+
+  const openComplaintDetail = (complaint) => {
+    setSelectedComplaint(complaint);
+  };
+
+  const closeComplaintDetail = () => {
+    setSelectedComplaint(null);
   };
 
   if (loading) {
@@ -80,51 +96,91 @@ const ComplaintsList = () => {
       ) : (
         <div className="complaints-grid">
           {complaints.map((complaint, index) => (
-            <div key={complaint.id} className="complaint-card">
-              <div className="complaint-header">
-                <div className="complaint-number">#{index + 1}</div>
-                <div className="complaint-name">
+            <button
+              key={complaint.id}
+              onClick={() => openComplaintDetail(complaint)}
+              className="complaint-list-item"
+            >
+              <div className="complaint-list-number">#{index + 1}</div>
+              <div className="complaint-list-content">
+                <div className="complaint-list-name">
                   {complaint.firstName} {complaint.lastName}
                 </div>
-              </div>
-
-              <div className="complaint-body">
-                <div className="complaint-row">
-                  <span className="complaint-label">Username:</span>
-                  <span className="complaint-value">{complaint.username}</span>
-                </div>
-
-                <div className="complaint-row">
-                  <span className="complaint-label">Location:</span>
-                  <span className="complaint-value">{complaint.location}</span>
-                </div>
-
-                <div className="complaint-row">
-                  <span className="complaint-label">Phone:</span>
-                  <span className="complaint-value">{complaint.phoneNumber}</span>
-                </div>
-
-                <div className="complaint-row">
-                  <span className="complaint-label">Complaint:</span>
-                  <p className="complaint-text">{complaint.complaint}</p>
-                </div>
-
-                <div className="complaint-footer">
-                  <span className="complaint-timestamp">
-                    Submitted: {complaint.submittedAt}
-                  </span>
+                <div className="complaint-list-text">
+                  {complaint.complaint.substring(0, 100)}...
                 </div>
               </div>
+            </button>
+          ))}
+        </div>
+      )}
 
+      {selectedComplaint && (
+        <div className="complaint-modal-overlay" onClick={closeComplaintDetail}>
+          <div className="complaint-modal" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-header">
+              <h2>Complaint Details</h2>
               <button
-                onClick={() => handleDelete(complaint.id)}
-                className="btn-delete"
-                title="Delete this complaint"
+                onClick={closeComplaintDetail}
+                className="modal-close-btn"
+                title="Close"
               >
-                Delete
+                ✕
               </button>
             </div>
-          ))}
+
+            <div className="modal-content">
+              <div className="detail-row">
+                <span className="detail-label">First Name:</span>
+                <span className="detail-value">{selectedComplaint.firstName}</span>
+              </div>
+
+              <div className="detail-row">
+                <span className="detail-label">Last Name:</span>
+                <span className="detail-value">{selectedComplaint.lastName}</span>
+              </div>
+
+              <div className="detail-row">
+                <span className="detail-label">Username:</span>
+                <span className="detail-value">{selectedComplaint.username}</span>
+              </div>
+
+              <div className="detail-row">
+                <span className="detail-label">Location:</span>
+                <span className="detail-value">{selectedComplaint.location}</span>
+              </div>
+
+              <div className="detail-row">
+                <span className="detail-label">Phone Number:</span>
+                <span className="detail-value">{selectedComplaint.phoneNumber}</span>
+              </div>
+
+              <div className="detail-row">
+                <span className="detail-label">Complaint:</span>
+                <p className="detail-complaint-text">{selectedComplaint.complaint}</p>
+              </div>
+
+              <div className="detail-row">
+                <span className="detail-label">Submitted:</span>
+                <span className="detail-value">{selectedComplaint.submittedAt}</span>
+              </div>
+            </div>
+
+            <div className="modal-actions">
+              <button
+                onClick={() => handleDelete(selectedComplaint.id)}
+                className="btn-delete-modal"
+              >
+                Delete Complaint
+              </button>
+              <button
+                onClick={closeComplaintDetail}
+                className="btn-close-modal"
+              >
+                Close
+              </button>
+            </div>
+          </div>
         </div>
       )}
     </div>
