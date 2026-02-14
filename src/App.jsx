@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, NavLink } from 'react-router-dom';
 import ComplaintForm from './components/ComplaintForm';
 import ComplaintsList from './components/ComplaintsList';
 import './App.css';
@@ -14,8 +14,8 @@ function App() {
         
         <nav className="app-nav">
           <ul className="nav-list">
-            <li><a href="/">Submit Complaint</a></li>
-            <li><a href="/complaints">View All Complaints</a></li>
+            <li><NavLink to="/" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>Submit Complaint</NavLink></li>
+            <li><NavLink to="/complaints" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>View All Complaints</NavLink></li>
           </ul>
         </nav>
 

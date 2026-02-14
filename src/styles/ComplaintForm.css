@@ -4,15 +4,16 @@
   width: 100%;
   max-width: 700px;
   margin: 0 auto;
-  padding: 2rem 0;
+  padding: 2rem;
 }
 
 .form-wrapper {
   background-color: var(--white);
-  border-radius: 12px;
+  border-radius: 8px;
   box-shadow: var(--shadow-lg);
   padding: 3rem;
   animation: slideUp 0.5s ease;
+  border: 1px solid var(--border-color);
 }
 
 @keyframes slideUp {
@@ -73,8 +74,8 @@
 
 .form-input:focus {
   outline: none;
-  border-color: var(--primary-color);
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+  border-color: #2c3e50;
+  box-shadow: 0 0 0 3px rgba(44, 62, 80, 0.1);
   background-color: var(--white);
 }
 
@@ -90,8 +91,8 @@
 }
 
 .form-textarea:focus {
-  border-color: var(--primary-color);
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+  border-color: #2c3e50;
+  box-shadow: 0 0 0 3px rgba(44, 62, 80, 0.1);
 }
 
 /* Error Message Styling */
@@ -125,19 +126,19 @@
 
 .btn-submit {
   padding: 0.875rem 2rem;
-  background-color: var(--primary-color);
+  background-color: #2c3e50;
   color: var(--white);
   border: none;
   border-radius: 6px;
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
   transition: all 0.3s ease;
   min-width: 200px;
 }
 
 .btn-submit:hover:not(:disabled) {
-  background-color: #1d4ed8;
+  background-color: #1a252f;
   box-shadow: var(--shadow-lg);
   transform: translateY(-2px);
 }
@@ -147,7 +148,7 @@
 }
 
 .btn-submit:disabled {
-  background-color: #cbd5e1;
+  background-color: #bdc3c7;
   cursor: not-allowed;
   opacity: 0.6;
 }
