@@ -1,0 +1,365 @@
+/* Complaints List Styles */
+
+.complaints-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+.complaints-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.complaints-header h1 {
+  font-size: 2.5rem;
+  color: var(--text-dark);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+
+.complaints-subtitle {
+  color: var(--text-light);
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+/* Actions Bar */
+.complaints-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.btn-submit-new {
+  padding: 0.875rem 2rem;
+  background-color: var(--success-color);
+  color: var(--white);
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-submit-new:hover {
+  background-color: #15803d;
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+}
+
+.btn-submit-new:active {
+  transform: translateY(0);
+}
+
+.btn-clear {
+  padding: 0.875rem 2rem;
+  background-color: var(--danger-color);
+  color: var(--white);
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-clear:hover {
+  background-color: #b91c1c;
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+}
+
+.btn-clear:active {
+  transform: translateY(0);
+}
+
+/* No Complaints State */
+.no-complaints {
+  background-color: var(--white);
+  border-radius: 12px;
+  padding: 4rem 2rem;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+
+.no-complaints p {
+  color: var(--text-light);
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+}
+
+.loading {
+  background-color: var(--white);
+  border-radius: 12px;
+  padding: 3rem 2rem;
+  text-align: center;
+  color: var(--text-light);
+  font-size: 1.1rem;
+  box-shadow: var(--shadow);
+}
+
+/* Complaints Grid */
+.complaints-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  animation: gridFadeIn 0.6s ease;
+}
+
+@keyframes gridFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Complaint Card */
+.complaint-card {
+  background-color: var(--white);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border-left: 4px solid var(--primary-color);
+}
+
+.complaint-card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-4px);
+}
+
+/* Card Header */
+.complaint-header {
+  background-color: #f0f9ff;
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.complaint-number {
+  background-color: var(--primary-color);
+  color: var(--white);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.complaint-name {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--text-dark);
+  flex: 1;
+  word-break: break-word;
+}
+
+/* Card Body */
+.complaint-body {
+  padding: 1.5rem;
+  flex: 1;
+}
+
+.complaint-row {
+  margin-bottom: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.complaint-row:last-of-type {
+  margin-bottom: 1rem;
+}
+
+.complaint-label {
+  font-weight: 600;
+  color: var(--primary-color);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.complaint-value {
+  color: var(--text-dark);
+  font-size: 1rem;
+  word-wrap: break-word;
+  word-break: break-word;
+}
+
+.complaint-text {
+  color: var(--text-dark);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0.5rem 0 0 0;
+  background-color: var(--light-bg);
+  padding: 0.75rem;
+  border-radius: 6px;
+  max-height: 150px;
+  overflow-y: auto;
+}
+
+/* Card Footer */
+.complaint-footer {
+  padding: 1rem 1.5rem 0;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.complaint-timestamp {
+  font-size: 0.8rem;
+  color: var(--text-light);
+  font-style: italic;
+}
+
+/* Delete Button */
+.btn-delete {
+  padding: 0.5rem 1rem;
+  background-color: var(--danger-color);
+  color: var(--white);
+  border: none;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+}
+
+.btn-delete:hover {
+  background-color: #b91c1c;
+  transform: scale(1.05);
+}
+
+.btn-delete:active {
+  transform: scale(0.98);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .complaints-grid {
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .complaints-container {
+    padding: 1rem 0;
+  }
+
+  .complaints-header h1 {
+    font-size: 2rem;
+  }
+
+  .complaints-subtitle {
+    font-size: 1rem;
+  }
+
+  .complaints-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .complaint-card {
+    margin: 0;
+  }
+
+  .btn-submit-new,
+  .btn-clear {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.95rem;
+    flex: 1;
+  }
+
+  .complaints-actions {
+    gap: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .complaints-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .complaints-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .complaint-header {
+    padding: 1rem;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .complaint-name {
+    width: 100%;
+  }
+
+  .complaint-body {
+    padding: 1rem;
+  }
+
+  .complaint-text {
+    max-height: 120px;
+  }
+
+  .btn-submit-new,
+  .btn-clear {
+    width: 100%;
+    padding: 0.7rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .btn-delete {
+    width: 100%;
+    margin-top: 1rem;
+  }
+
+  .complaint-footer {
+    padding: 0.75rem 1rem;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* Scrollbar for complaint text */
+.complaint-text::-webkit-scrollbar {
+  width: 4px;
+}
+
+.complaint-text::-webkit-scrollbar-track {
+  background: var(--light-bg);
+  border-radius: 2px;
+}
+
+.complaint-text::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 2px;
+}
+
+.complaint-text::-webkit-scrollbar-thumb:hover {
+  background: var(--secondary-color);
+}
